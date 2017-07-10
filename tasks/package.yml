@@ -1,0 +1,4 @@
+- name: Install Dispatcher package.
+  package:
+    name: "{{ dispatcher_package }}"
+    state: installed

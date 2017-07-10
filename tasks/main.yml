@@ -1,0 +1,16 @@
+- name: Include OS family specific variables.
+  include_vars: "family_{{ ansible_os_family }}.yml"
+
+- name: Get installed version of Apache.
+  shell: "apachectl -v"
+  register: _apache_version
+
+- name: Create apache_version variable.
+  set_fact:
+    apache_version: "{{ _apache_version.stdout.split()[2].split('/')[1] }}"
+
+- name: Install Dispatcher module.
+  include: "{{ dispatcher_install_source }}.yml"
+
+- name: Include OS-specific setup.
+  include: "setup_{{ ansible_os_family }}.yml"

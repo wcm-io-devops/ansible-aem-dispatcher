@@ -1,0 +1,33 @@
+- name: Build Apache version filename token.
+  set_fact:
+    dispatcher_apache_version: "apache{{ apache_version | regex_replace('(\\d+\\.\\d+).*', '\\1') }}"
+
+- name: Build Dispatcher filenames.
+  set_fact:
+    dispatcher_tarball_tokens:
+      - "dispatcher"
+      - "{{ dispatcher_apache_version }}"
+      - "{{ ansible_system | lower }}"
+      - "{{ ansible_architecture | regex_replace('_', '-')}}"
+    dispatcher_module_filename: "dispatcher-{{ dispatcher_apache_version }}-{{ dispatcher_version}}.so"
+
+- name: Add SSL filename token.
+  set_fact:
+    dispatcher_tarball_tokens: "{{ dispatcher_tarball_tokens + ['ssl'] }}"
+  when: dispatcher_ssl_support
+
+- name: Unpack Dispatcher module.
+  unarchive:
+    src: "{{ dispatcher_tarball_tokens | join('-') }}-{{ dispatcher_version}}.tar.gz"
+    extra_opts: ["{{ dispatcher_module_filename }}"]
+    dest: "{{ dispatcher_module_path }}"
+    mode: 0755
+    owner: root
+    group: root
+    creates: "{{ dispatcher_module_path }}/{{ dispatcher_module_filename }}"
+
+- name: Create module link.
+  file:
+    src: "{{ dispatcher_module_path }}/{{ dispatcher_module_filename }}"
+    dest: "{{ dispatcher_module_path }}/mod_dispatcher.so"
+    state: link

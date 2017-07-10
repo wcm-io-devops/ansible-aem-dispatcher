@@ -1,0 +1,4 @@
+dispatcher_install_source: file
+apache_remove_default_vhost: true
+dispatcher_version: 4.2.2
+dispatcher_ssl_support: true

@@ -1,0 +1,34 @@
+- name: Include distribution specific variables.
+  include_vars: "distribution_{{ ansible_distribution }}.yml"
+
+- block:
+
+  - name: Install libssl dependency.
+    package:
+      name: libssl1.0.0
+      state: present
+
+  - name: Create compatibility links.
+    file:
+      src: "{{ dispatcher_libssl_path }}/{{ item }}.1.0.0"
+      dest: "{{ dispatcher_libssl_path }}/{{ item }}.10"
+      state: link
+    with_items:
+      - libssl.so
+      - libcrypto.so
+
+  when: dispatcher_ssl_support
+
+- name: Make dispatcher module available.
+  copy:
+    dest: "{{ apache_server_root }}/mods-available/dispatcher.load"
+    content: "LoadModule dispatcher_module {{ dispatcher_module_path }}/mod_dispatcher.so"
+  notify:
+    - restart apache
+
+- name: Enable dispatcher module.
+  apache2_module:
+    name: dispatcher
+    state: present
+  notify:
+    - restart apache
