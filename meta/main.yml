@@ -26,5 +26,8 @@ galaxy_info:
     - wcmio
 
 dependencies:
-  - { role: geerlingguy.apache }
-
+  - {
+      role: geerlingguy.apache,
+      apache_remove_default_vhost: true,
+      apache_create_vhosts: false
+    }
