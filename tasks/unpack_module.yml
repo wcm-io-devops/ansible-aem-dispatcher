@@ -15,3 +15,4 @@
     src: "{{ dispatcher_module_path }}/{{ dispatcher_module_filename }}"
     dest: "{{ dispatcher_module_path }}/mod_dispatcher.so"
     state: link
+    force: yes
