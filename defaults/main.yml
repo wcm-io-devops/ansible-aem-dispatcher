@@ -1,6 +1,10 @@
+# Installation source: file, package, url or s3
 dispatcher_install_source: file
+# Dispatcher version to install
 dispatcher_version: 4.2.2
+# Whether to install dispatcher with SSL support
 dispatcher_ssl_support: true
+# Path to download the dispatcher tarball to
 dispatcher_download_path: /tmp
 # Build automatically from target environment and dispatcher_version if not specified
 # dispatcher_tarball_name: "dispatcher-apache2.4-linux-x86-64-ssl-{{ dispatcher_version }}.tar.gz"
