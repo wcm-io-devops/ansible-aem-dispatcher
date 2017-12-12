@@ -1,18 +1,22 @@
 ---
+- name: Derive module filename from tarball name.
+  set_fact:
+    _dispatcher_module_filename: "{{ dispatcher_tarball_name | regex_replace('(dispatcher-apache.*?)-.*-(.*).tar.gz', '\\1-\\2.so') }}"
+
 - name: Unpack Dispatcher module.
   unarchive:
     src: "{{ dispatcher_download_path }}/{{ dispatcher_tarball_name }}"
     remote_src: yes
-    extra_opts: ["{{ dispatcher_module_filename }}"]
+    extra_opts: ["{{ _dispatcher_module_filename }}"]
     dest: "{{ dispatcher_module_path }}"
     mode: 0755
     owner: root
     group: root
-    creates: "{{ dispatcher_module_path }}/{{ dispatcher_module_filename }}"
+    creates: "{{ dispatcher_module_path }}/{{ _dispatcher_module_filename }}"
 
 - name: Create module link.
   file:
-    src: "{{ dispatcher_module_path }}/{{ dispatcher_module_filename }}"
+    src: "{{ dispatcher_module_path }}/{{ _dispatcher_module_filename }}"
     dest: "{{ dispatcher_module_path }}/mod_dispatcher.so"
     state: link
     force: yes

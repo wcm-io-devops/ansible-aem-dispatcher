@@ -7,18 +7,13 @@
   set_fact:
     apache_version: "{{ _apache_version.stdout.split()[2].split('/')[1] }}"
 
-- name: Build Apache version filename token.
-  set_fact:
-    dispatcher_apache_version: "apache{{ apache_version | regex_replace('(\\d+\\.\\d+).*', '\\1') }}"
-
-- name: Build Dispatcher filenames.
+- name: Build Dispatcher filename tokens from environment.
   set_fact:
     dispatcher_tarball_tokens:
       - "dispatcher"
-      - "{{ dispatcher_apache_version }}"
+      - "apache{{ apache_version | regex_replace('(\\d+\\.\\d+).*', '\\1') }}"
       - "{{ ansible_system | lower }}"
       - "{{ ansible_architecture | regex_replace('_', '-')}}"
-    dispatcher_module_filename: "dispatcher-{{ dispatcher_apache_version }}-{{ dispatcher_version}}.so"
 
 - name: Add SSL filename token.
   set_fact:
