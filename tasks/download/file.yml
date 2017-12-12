@@ -1,0 +1,5 @@
+---
+- name: Copy Dispatcher tarball to download folder.
+  copy:
+    src: "{{ dispatcher_tarball_name }}"
+    dest: "{{ dispatcher_download_path }}"

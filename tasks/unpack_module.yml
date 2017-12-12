@@ -1,0 +1,17 @@
+---
+- name: Unpack Dispatcher module.
+  unarchive:
+    src: "{{ dispatcher_download_path }}/{{ dispatcher_tarball_name }}"
+    remote_src: yes
+    extra_opts: ["{{ dispatcher_module_filename }}"]
+    dest: "{{ dispatcher_module_path }}"
+    mode: 0755
+    owner: root
+    group: root
+    creates: "{{ dispatcher_module_path }}/{{ dispatcher_module_filename }}"
+
+- name: Create module link.
+  file:
+    src: "{{ dispatcher_module_path }}/{{ dispatcher_module_filename }}"
+    dest: "{{ dispatcher_module_path }}/mod_dispatcher.so"
+    state: link

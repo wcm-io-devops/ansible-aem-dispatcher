@@ -1,16 +1,26 @@
+---
 - name: Include OS family specific variables.
   include_vars: "family_{{ ansible_os_family }}.yml"
 
-- name: Get installed version of Apache.
-  shell: "apachectl -v"
-  register: _apache_version
+- name: Build Dispatcher tarball filename for environment.
+  include: tarball_name.yml
+  when: dispatcher_tarball_name is undefined
 
-- name: Create apache_version variable.
-  set_fact:
-    apache_version: "{{ _apache_version.stdout.split()[2].split('/')[1] }}"
+- name: Check whether Dispatcher tarball was already downloaded.
+  stat:
+    path: "{{ dispatcher_download_path }}/{{ dispatcher_tarball_name }}"
+  register: dispatcher_tarball_file
 
-- name: Install Dispatcher module.
-  include: "{{ dispatcher_install_source }}.yml"
+- name: Download Dispatcher tarball.
+  include: "download/{{ dispatcher_install_source }}.yml"
+  when: not dispatcher_tarball_file.stat.exists or
+        (dispatcher_tarball_sha1 is defined and
+        (dispatcher_tarball_sha1 | lower) != dispatcher_tarball_file.stat.checksum)
+
+- name: Unpack Dispatcher Module.
+  include: unpack_module.yml
+  # We assume that the package already installed the module in the proper location
+  when: dispatcher_install_source != "package"
 
 - name: Include OS-specific setup.
   include: "setup_{{ ansible_os_family }}.yml"

@@ -1,3 +1,18 @@
 dispatcher_install_source: file
 dispatcher_version: 4.2.2
 dispatcher_ssl_support: true
+dispatcher_download_path: /tmp
+# Build automatically from target environment and dispatcher_version if not specified
+# dispatcher_tarball_name: "dispatcher-apache2.4-linux-x86-64-ssl-{{ dispatcher_version }}.tar.gz"
+# dispatcher_tarball_sha1: 4DA1FBD72FE7E2F68C755307FBF71CDC4CC10FFF
+
+# URL, username and password for URL source
+# dispatcher_url: "http://host:port/path/{{ dispatcher_tarball_name }}"
+# dispatcher_url_username:
+# dispatcher_url_password:
+
+# Bucket, object and credentials for S3 source
+# dispatcher_s3_bucket: aem-installation-artifacts
+# dispatcher_s3_object: "{{ dispatcher_tarball_name }}"
+# dispatcher_s3_access_key:
+# dispatcher_s3_secret_key:

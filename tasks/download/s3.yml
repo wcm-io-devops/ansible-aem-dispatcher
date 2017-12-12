@@ -1,0 +1,22 @@
+---
+- name: Install setuptools package.
+  package:
+    name: python-setuptools
+
+- name: Install pip.
+  easy_install:
+    name: pip
+    state: latest
+
+- name: Install boto3 dependency.
+  pip:
+    name: boto3
+
+- name: Download Dispatcher artifact from S3.
+  s3:
+    bucket: "{{ dispatcher_s3_bucket }}"
+    object: "{{ dispatcher_s3_object }}"
+    dest: "{{ dispatcher_download_path }}/{{ dispatcher_tarball_name }}"
+    mode: get
+    aws_access_key: "{{ dispatcher_s3_access_key | default(omit) }}"
+    aws_secret_key: "{{ dispatcher_s3_secret_key | default(omit) }}"
