@@ -1,4 +1,4 @@
-# Installation source: file, package, url or s3
+# Installation source: file, package, url, s3 or nexus
 dispatcher_install_source: file
 # Dispatcher version to install
 dispatcher_version: 4.2.2
@@ -20,3 +20,13 @@ dispatcher_download_path: /tmp
 # dispatcher_s3_object: "{{ dispatcher_tarball_name }}"
 # dispatcher_s3_access_key:
 # dispatcher_s3_secret_key:
+
+# Maven coordinates for Nexus source (Version and classifier are build automatically from target environment and dispatcher_version if not specified)
+# dispatcher_mvn_coordinates:
+# - {
+#   group_id: group.id,
+#   artifact_id: artifact.id,
+#   repository_url: 'https://repo.url'
+#   version: "{{ dispatcher_version }}",
+#   classifier: "{{ dispatcher_apache_version }}-{{ ansible_system | lower }}-{{ ansible_architecture | regex_replace('_', '-') }}",
+#   }

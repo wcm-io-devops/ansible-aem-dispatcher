@@ -1,0 +1,18 @@
+---
+- name: Install lxml dependency for Ansible maven_artifact module.
+  package:
+    name: python-lxml
+    state: present
+
+- name: Download Dispatcher tarball artifact from Nexus.
+  maven_artifact:
+    group_id: "{{ item.group_id }}"
+    artifact_id: "{{ item.artifact_id }}"
+    repository_url: "{{ item.repository_url }}"
+    dest: "{{ dispatcher_download_path }}/{{ dispatcher_tarball_name }}"
+    extension: tar.gz
+    username: "{{ nexus_username }}"
+    password: "{{ nexus_password }}"
+    version: "{{ item.version | default(dispatcher_version) }}"
+    classifier: "{{ item.classifier | default(dispatcher_tarball_name | regex_replace('dispatcher-(.*)-([\\d\\.]*)\\.tar\\.gz', '\\1')) }}"
+  with_items: "{{ dispatcher_mvn_coordinates }}"
