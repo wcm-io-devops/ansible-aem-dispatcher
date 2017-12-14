@@ -9,7 +9,7 @@
 
 - name: Build Dispatcher filename tokens from environment.
   set_fact:
-    dispatcher_tarball_tokens:
+    aem_dispatcher_tarball_tokens:
       - "dispatcher"
       - "apache{{ apache_version | regex_replace('(\\d+\\.\\d+).*', '\\1') }}"
       - "{{ ansible_system | lower }}"
@@ -17,9 +17,9 @@
 
 - name: Add SSL filename token.
   set_fact:
-    dispatcher_tarball_tokens: "{{ dispatcher_tarball_tokens + ['ssl'] }}"
-  when: dispatcher_ssl_support
+    aem_dispatcher_tarball_tokens: "{{ aem_dispatcher_tarball_tokens + ['ssl'] }}"
+  when: aem_dispatcher_ssl_support
 
 - name: Build dispatcher tarball name.
   set_fact:
-    dispatcher_tarball_name: "{{ dispatcher_tarball_tokens | join('-') }}-{{ dispatcher_version}}.tar.gz"
+    aem_dispatcher_tarball_name: "{{ aem_dispatcher_tarball_tokens | join('-') }}-{{ aem_dispatcher_version}}.tar.gz"

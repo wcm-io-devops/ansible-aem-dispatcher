@@ -1,13 +1,13 @@
 ---
 - name: Build Dispatcher SHA1 checksum string.
   set_fact:
-    _dispatcher_tarball_checksum: "sha1:{{ dispatcher_tarball_sha1 }}"
-  when: dispatcher_tarball_sha1 is defined
+    _aem_dispatcher_tarball_checksum: "sha1:{{ aem_dispatcher_tarball_sha1 }}"
+  when: aem_dispatcher_tarball_sha1 is defined
 
 - name: Download Dispatcher tarball from URL.
   get_url:
-    url: "{{ dispatcher_url }}"
-    dest: "{{ dispatcher_download_path }}/{{ dispatcher_tarball_name }}"
-    url_username: "{{ dispatcher_url_username | default(omit) }}"
-    url_password: "{{ dispatcher_url_password | default(omit) }}"
-    checksum: "{{ _dispatcher_tarball_checksum | default(omit) }}"
+    url: "{{ aem_dispatcher_url }}"
+    dest: "{{ aem_dispatcher_download_path }}/{{ aem_dispatcher_tarball_name }}"
+    url_username: "{{ aem_dispatcher_url_username | default(omit) }}"
+    url_password: "{{ aem_dispatcher_url_password | default(omit) }}"
+    checksum: "{{ _aem_dispatcher_tarball_checksum | default(omit) }}"

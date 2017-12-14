@@ -1,1 +1,1 @@
-dispatcher_module_path: /usr/lib/apache2/modules
+aem_dispatcher_module_path: /usr/lib/apache2/modules
