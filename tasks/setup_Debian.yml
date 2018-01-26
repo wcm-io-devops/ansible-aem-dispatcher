@@ -1,16 +1,24 @@
 - name: Include distribution specific variables.
   include_vars: "distribution_{{ ansible_distribution }}.yml"
 
+- name: Include distribution version specific variables when available.
+  include_vars:
+    dir: 'vars'
+    files_matching: "{{ item }}"
+    depth: 1
+  with_items:
+    - "distribution_{{ ansible_distribution }}{{ ansible_lsb.major_release }}.yml"
+
 - block:
 
   - name: Install libssl dependency.
     package:
-      name: libssl1.0.0
+      name: "libssl{{ aem_dispatcher_libssl_version }}"
       state: present
 
   - name: Create compatibility links.
     file:
-      src: "{{ aem_dispatcher_libssl_path }}/{{ item }}.1.0.0"
+      src: "{{ aem_dispatcher_libssl_path }}/{{ item }}.{{ aem_dispatcher_libssl_version }}"
       dest: "{{ aem_dispatcher_libssl_path }}/{{ item }}.10"
       state: link
     with_items:
