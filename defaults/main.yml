@@ -2,6 +2,12 @@
 aem_dispatcher_version: 4.2.2
 # Whether to install dispatcher with SSL support
 aem_dispatcher_ssl_support: true
+
+# http dispatcher port
+aem_dispatcher_port: 80
+# https dispatcher port
+aem_dispatcher_port_ssl: 443
+
 # Path to download the dispatcher tarball to
 aem_dispatcher_download_path: /tmp
 # Build automatically from target environment and aem_dispatcher_version if not specified
