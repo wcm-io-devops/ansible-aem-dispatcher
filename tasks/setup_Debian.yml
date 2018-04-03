@@ -7,7 +7,7 @@
     files_matching: "{{ item }}"
     depth: 1
   with_items:
-    - "distribution_{{ ansible_distribution }}{{ ansible_lsb.major_release }}.yml"
+    - "distribution_{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
 
 - block:
 
