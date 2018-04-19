@@ -19,6 +19,14 @@ The dispatcher version to install.
 
 Whether to install the Dispatcher version which supports SSL for communication with the render instance.
 
+    aem_dispatcher_port: 80
+
+The http port the webserver is listening on
+
+    aem_dispatcher_port_ssl: 443
+
+The https port the webserver is listening on
+
 	dispatcher_download_path: /tmp
 
 Path to download the Dispatcher tarball to.
