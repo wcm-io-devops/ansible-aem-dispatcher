@@ -11,11 +11,11 @@ This role requires Ansible 2.0 or higher and works with Dispatcher 4.2.x or high
 
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
-	dispatcher_version: 4.2.2
+	aem_dispatcher_version: 4.2.2
 	
 The dispatcher version to install.
 
-	dispatcher_ssl_support: true
+	aem_dispatcher_ssl_support: true
 
 Whether to install the Dispatcher version which supports SSL for communication with the render instance.
 
@@ -27,15 +27,15 @@ The http port the webserver is listening on
 
 The https port the webserver is listening on
 
-	dispatcher_download_path: /tmp
+	aem_dispatcher_download_path: /tmp
 
 Path to download the Dispatcher tarball to.
 
-	dispatcher_tarball_name:
+	aem_dispatcher_tarball_name:
 	
 Name of the Dispatcher tarball to use for installation. When not specified, the role will automatically build the name from the target environment (Apache version, architecture etc.) and `dispatcher_version`.
 
-	dispatcher_tarball_sha1:
+	aem_dispatcher_tarball_sha1:
 
 SHA1 checksum of the Dispatcher tarball. Currently this is used to check the integrity of an existing download and files downloaded via URL.
 	
@@ -43,20 +43,20 @@ SHA1 checksum of the Dispatcher tarball. Currently this is used to check the int
 	
 The installation source to fetch the installation tarball from. Can either be `file`, `package`, `url`, `s3` or `nexus`.
 
-	dispatcher_url: "http://host:port/path/{{ dispatcher_tarball_name }}"
-	dispatcher_url_username:
-	dispatcher_url_password:
+	aem_dispatcher_url: "http://host:port/path/{{ dispatcher_tarball_name }}"
+	aem_dispatcher_url_username:
+	aem_dispatcher_url_password:
 
 URL, username and password for retrieving the installation file from an URL.
 	
-	dispatcher_s3_bucket: aem-installation-artifacts
-	dispatcher_s3_object: "{{ dispatcher_tarball_name }}"
-	dispatcher_s3_access_key:
-	dispatcher_s3_secret_key:
+	aem_dispatcher_s3_bucket: aem-installation-artifacts
+	aem_dispatcher_s3_object: "{{ dispatcher_tarball_name }}"
+	aem_dispatcher_s3_access_key:
+	aem_dispatcher_s3_secret_key:
 
 Bucket, object (path) and credentials for retrieving the installation file from an S3 bucket.
 	
-	dispatcher_nexus_coordinates:
+	aem_dispatcher_nexus_coordinates:
 	- {
 	  group_id: group.id,
 	  artifact_id: artifact.id,
@@ -64,8 +64,8 @@ Bucket, object (path) and credentials for retrieving the installation file from 
 	  version: "{{ dispatcher_version }}",
 	  classifier: "{{ dispatcher_apache_version }}-{{ ansible_system | lower }}-{{ ansible_architecture | regex_replace('_', '-') }}",
 	  }
-	dispatcher_nexus_username:
-	dispatcher_nexus_password:
+	aem_dispatcher_nexus_username:
+	aem_dispatcher_nexus_password:
 
 Maven coordinates for retrieving the installation file from Nexus. Version and classifier are build automatically from the target environment and dispatcher_version if not specified (as for the filename).
 
@@ -79,7 +79,7 @@ Installs AEM in `/opt/adobe/aem-author`:
 
     - hosts: webserver
       roles:
-         - { role: aem-dispatcher, dispatcher_version: 4.2.3 }
+         - { role: aem-dispatcher, aem_dispatcher_version: 4.2.3 }
 
 ## License
 
