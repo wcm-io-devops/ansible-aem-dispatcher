@@ -1,16 +1,3 @@
-# This should be done by the apache role as well
-# Remove once https://github.com/geerlingguy/ansible-role-apache/issues/81 is resolved
-- name: Remove default vhosts.
-  file:
-    path: "{{ apache_conf_path }}/vhosts.conf"
-    state: absent
-  with_items:
-    - vhosts.conf
-    - userdir.conf
-    - welcome.conf
-  notify: restart apache
-  when: apache_remove_default_vhost
-
 - name: Enable dispatcher module.
   copy:
     dest: "{{ apache_server_root }}/conf.modules.d/01-dispatcher.conf"
