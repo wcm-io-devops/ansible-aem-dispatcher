@@ -28,7 +28,7 @@ galaxy_info:
 
 dependencies:
   - {
-      role: geerlingguy.apache,
+      role: wcm-io-devops.apache,
       apache_remove_default_vhost: true,
       apache_remove_default_vhost_ssl: true,
       apache_create_vhosts: false,
