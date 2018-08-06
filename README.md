@@ -1,4 +1,4 @@
-# wcm-io-devops.aem-dispatcher
+# wcm_io_devops.aem_dispatcher
 
 This role installs the [AEM Dispatcher](https://helpx.adobe.com/experience-manager/dispatcher/using/dispatcher.html) Apache module on Debian/Ubuntu or RHEL/CentOS servers. It will also ensure that Apache itself is installed (by depending on the [geerlingguy.apache](https://galaxy.ansible.com/geerlingguy/apache/) role).
 > This role was developed as part of the wcm.io set of roles to integrate Ansible with [CONGA](http://devops.wcm.io/conga/) but can be used independently of it.
@@ -71,7 +71,7 @@ Maven coordinates for retrieving the installation file from Nexus. Version and c
 
 ## Dependencies
 
-This role depends on the [wcm-io-devops.apache](https://github.com/wcm-io-devops/ansible-role-apache) role for installing Apache.
+This role depends on the [wcm_io_devops.apache](https://github.com/wcm-io-devops/ansible-role-apache) role for installing Apache.
 
 ## Example Playbook
 
@@ -79,7 +79,7 @@ Installs AEM in `/opt/adobe/aem-author`:
 
     - hosts: webserver
       roles:
-         - { role: wcm-io-devops.aem-dispatcher, aem_dispatcher_version: 4.2.3 }
+         - { role: wcm_io_devops.aem_dispatcher, aem_dispatcher_version: 4.2.3 }
 
 ## License
 
