@@ -2,6 +2,8 @@
 - name: Get installed version of Apache.
   shell: "apachectl -v"
   register: _apache_version
+  tags:
+    - skip_ansible_lint
 
 - name: Create apache_version variable.
   set_fact:
