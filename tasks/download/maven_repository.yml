@@ -4,15 +4,15 @@
     name: python-lxml
     state: present
 
-- name: Download Dispatcher tarball artifact from Nexus.
+- name: Download Dispatcher tarball artifact from Maven repository.
   maven_artifact:
     group_id: "{{ item.group_id }}"
     artifact_id: "{{ item.artifact_id }}"
     repository_url: "{{ item.repository_url }}"
     dest: "{{ aem_dispatcher_download_path }}/{{ aem_dispatcher_tarball_name }}"
     extension: tar.gz
-    username: "{{ aem_dispatcher_nexus_username | default(omit) }}"
-    password: "{{ aem_dispatcher_nexus_password | default(omit) }}"
+    username: "{{ aem_dispatcher_maven_repository_username | default(omit) }}"
+    password: "{{ aem_dispatcher_maven_repository_password | default(omit) }}"
     version: "{{ item.version | default(aem_dispatcher_version) }}"
     classifier: "{{ item.classifier | default(aem_dispatcher_tarball_name | regex_replace('dispatcher-(.*)-([\\d\\.]*)\\.tar\\.gz', '\\1')) }}"
-  with_items: "{{ aem_dispatcher_nexus_coordinates }}"
+  with_items: "{{ aem_dispatcher_maven_repository_coordinates }}"

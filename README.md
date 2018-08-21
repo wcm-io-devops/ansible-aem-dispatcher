@@ -5,7 +5,7 @@ This role installs the [AEM Dispatcher](https://helpx.adobe.com/experience-manag
 
 ## Requirements
 
-This role requires Ansible 2.0 or higher and works with Dispatcher 4.2.x or higher. It requires the Dispatcher installation tarball which can be supplied as file or retrieved from a Nexus/RPM/APT repository, an HTTP URL or a S3 bucket (see below).
+This role requires Ansible 2.0 or higher and works with Dispatcher 4.2.x or higher. It requires the Dispatcher installation tarball which can be supplied as file or retrieved from a Maven/RPM/APT repository, an HTTP URL or a S3 bucket (see below).
 
 ## Role Variables
 
@@ -41,7 +41,7 @@ SHA1 checksum of the Dispatcher tarball. Currently this is used to check the int
 	
 	dispatcher_install_source: file
 	
-The installation source to fetch the installation tarball from. Can either be `file`, `package`, `url`, `s3` or `nexus`.
+The installation source to fetch the installation tarball from. Can either be `file`, `package`, `url`, `s3` or `maven_repository`.
 
 	aem_dispatcher_url: "http://host:port/path/{{ dispatcher_tarball_name }}"
 	aem_dispatcher_url_username:
@@ -56,7 +56,7 @@ URL, username and password for retrieving the installation file from an URL.
 
 Bucket, object (path) and credentials for retrieving the installation file from an S3 bucket.
 	
-	aem_dispatcher_nexus_coordinates:
+	aem_dispatcher_maven_repository_coordinates:
 	- {
 	  group_id: group.id,
 	  artifact_id: artifact.id,
@@ -64,10 +64,10 @@ Bucket, object (path) and credentials for retrieving the installation file from 
 	  version: "{{ dispatcher_version }}",
 	  classifier: "{{ dispatcher_apache_version }}-{{ ansible_system | lower }}-{{ ansible_architecture | regex_replace('_', '-') }}",
 	  }
-	aem_dispatcher_nexus_username:
-	aem_dispatcher_nexus_password:
+	aem_dispatcher_maven_repository_username:
+	aem_dispatcher_maven_repository_password:
 
-Maven coordinates for retrieving the installation file from Nexus. Version and classifier are build automatically from the target environment and dispatcher_version if not specified (as for the filename).
+Maven coordinates for retrieving the installation file from a Maven repository. Version and classifier are build automatically from the target environment and dispatcher_version if not specified (as for the filename).
 
 ## Dependencies
 
