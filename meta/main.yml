@@ -35,5 +35,9 @@ dependencies:
       apache_remove_default_vhost_ssl: true,
       apache_create_vhosts: false,
       apache_listen_port: "{{ aem_dispatcher_port }}",
-      apache_listen_port_ssl: "{{ aem_dispatcher_port_ssl }}"
+      apache_listen_port_ssl: "{{ aem_dispatcher_port_ssl }}",
+      tags: [
+        "dependency",
+        "dependency.apache"
+      ]
     }
