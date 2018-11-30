@@ -3,7 +3,7 @@
   include_vars: "family_{{ ansible_os_family }}.yml"
 
 - name: Build Dispatcher tarball filename for environment.
-  include: tarball_name.yml
+  include_tasks: tarball_name.yml
   when: aem_dispatcher_tarball_name is undefined
 
 - name: Check whether Dispatcher tarball was already downloaded.
@@ -12,15 +12,15 @@
   register: aem_dispatcher_tarball_file
 
 - name: Download Dispatcher tarball.
-  include: "download/{{ aem_dispatcher_install_source }}.yml"
+  include_tasks: "download/{{ aem_dispatcher_install_source }}.yml"
   when: not aem_dispatcher_tarball_file.stat.exists or
         (aem_dispatcher_tarball_sha1 is defined and
         (aem_dispatcher_tarball_sha1 | lower) != aem_dispatcher_tarball_file.stat.checksum)
 
 - name: Unpack Dispatcher Module.
-  include: unpack_module.yml
+  include_tasks: unpack_module.yml
   # We assume that the package already installed the module in the proper location
   when: aem_dispatcher_install_source != "package"
 
 - name: Include OS-specific setup.
-  include: "setup_{{ ansible_os_family }}.yml"
+  include_tasks: "setup_{{ ansible_os_family }}.yml"
