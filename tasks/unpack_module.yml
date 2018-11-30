@@ -4,14 +4,6 @@
     _aem_dispatcher_module_filename:
       "{{ aem_dispatcher_tarball_name | regex_replace('(dispatcher-apache.*?)-.*-(.*).tar.gz', '\\1-\\2.so') }}"
 
-- debug:
-    msg:
-      - _aem_dispatcher_module_filename
-      - "{{ _aem_dispatcher_module_filename }}"
-
-- fail:
-    msg: do not continue
-
 - name: Unpack Dispatcher module.
   unarchive:
     src: "{{ aem_dispatcher_download_path }}/{{ aem_dispatcher_tarball_name }}"
