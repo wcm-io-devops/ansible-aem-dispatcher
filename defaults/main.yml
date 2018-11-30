@@ -1,5 +1,5 @@
 # Dispatcher version to install
-aem_dispatcher_version: 4.2.2
+aem_dispatcher_version: 4.2.3
 # Whether to install dispatcher with SSL support
 aem_dispatcher_ssl_support: true
 
