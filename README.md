@@ -15,7 +15,7 @@ This role requires Ansible 2.0 or higher and works with Dispatcher 4.2.x or high
 
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
-	aem_dispatcher_version: 4.2.2
+	aem_dispatcher_version: 4.3.2
 	
 The dispatcher version to install.
 
