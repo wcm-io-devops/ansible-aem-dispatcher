@@ -83,7 +83,7 @@ Installs AEM in `/opt/adobe/aem-author`:
 
     - hosts: webserver
       roles:
-         - { role: wcm_io_devops.aem_dispatcher, aem_dispatcher_version: 4.2.3 }
+         - { role: wcm_io_devops.aem_dispatcher, aem_dispatcher_version: 4.3.2 }
 
 ## License
 
