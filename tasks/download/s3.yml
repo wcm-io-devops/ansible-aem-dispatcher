@@ -12,7 +12,7 @@
     name: boto3
 
 - name: Download Dispatcher artifact from S3.
-  s3:
+  aws_s3:
     bucket: "{{ aem_dispatcher_s3_bucket }}"
     object: "{{ aem_dispatcher_s3_object }}"
     dest: "{{ aem_dispatcher_download_path }}/{{ aem_dispatcher_tarball_name }}"
