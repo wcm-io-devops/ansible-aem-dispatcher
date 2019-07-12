@@ -1,6 +1,6 @@
 - name: Enable dispatcher module.
   copy:
-    dest: "{{ apache_server_root }}/conf.modules.d/01-dispatcher.conf"
+    dest: "{{ _aem_dispatcher_apache_server_root }}/conf.modules.d/01-dispatcher.conf"
     content: "LoadModule dispatcher_module modules/mod_dispatcher.so"
   notify: restart apache
 

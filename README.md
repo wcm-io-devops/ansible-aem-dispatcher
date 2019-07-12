@@ -73,6 +73,14 @@ Bucket, object (path) and credentials for retrieving the installation file from 
 
 Maven coordinates for retrieving the installation file from a Maven repository. Version and classifier are build automatically from the target environment and dispatcher_version if not specified (as for the filename).
 
+    aem_dispatcher_dependency_apache: true
+
+ Enables/disables the execution of the apache role dependency.
+
+    # aem_dispatcher_apache_server_root: /etc/apache2
+
+Overwrites the os family specific apache server root.
+
 ## Dependencies
 
 This role depends on the [wcm_io_devops.apache](https://github.com/wcm-io-devops/ansible-role-apache) role for installing Apache.
