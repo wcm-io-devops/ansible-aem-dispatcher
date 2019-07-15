@@ -2,6 +2,7 @@
 - name: Get installed version of Apache.
   shell: "apachectl -v"
   register: _apache_version
+  changed_when: false
   tags:
     - skip_ansible_lint
 
