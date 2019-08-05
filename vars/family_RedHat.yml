@@ -1,1 +1,2 @@
 aem_dispatcher_module_path: /usr/lib64/httpd/modules
+_aem_dispatcher_apache_server_root: "{{ aem_dispatcher_apache_server_root | default(apache_server_root) | default('/etc/httpd') }}"

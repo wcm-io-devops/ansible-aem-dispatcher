@@ -29,7 +29,7 @@
 
 - name: Make dispatcher module available.
   copy:
-    dest: "{{ apache_server_root }}/mods-available/dispatcher.load"
+    dest: "{{ _aem_dispatcher_apache_server_root }}/mods-available/dispatcher.load"
     content: "LoadModule dispatcher_module {{ aem_dispatcher_module_path }}/mod_dispatcher.so"
   notify:
     - restart apache

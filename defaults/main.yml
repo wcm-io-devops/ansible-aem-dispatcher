@@ -39,3 +39,9 @@ aem_dispatcher_install_source: file
 #   }
 # aem_dispatcher_maven_repository_username:
 # aem_dispatcher_maven_repository_password:
+
+# Enables/disables the execution of the apache role dependency
+aem_dispatcher_dependency_apache: true
+
+# Overwrites the os family specific apache server root
+# aem_dispatcher_apache_server_root: /etc/apache2

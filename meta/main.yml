@@ -28,16 +28,16 @@ galaxy_info:
     - wcmio
 
 dependencies:
-  - {
-      role: wcm_io_devops.apache,
-      version: "3.0.3-1",
-      apache_remove_default_vhost: true,
-      apache_remove_default_vhost_ssl: true,
-      apache_create_vhosts: false,
-      apache_listen_port: "{{ aem_dispatcher_port }}",
-      apache_listen_port_ssl: "{{ aem_dispatcher_port_ssl }}",
-      tags: [
-        "dependency",
-        "dependency.apache"
-      ]
-    }
+  - role: wcm_io_devops.apache
+    version: "3.0.3-1"
+    apache_remove_default_vhost: true
+    apache_remove_default_vhost_ssl: true
+    apache_create_vhosts: false
+    apache_listen_port: "{{ aem_dispatcher_port }}"
+    apache_listen_port_ssl: "{{ aem_dispatcher_port_ssl }}"
+    tags: [
+      "dependency",
+      "dependency.apache"
+    ]
+    when: aem_dispatcher_dependency_apache
+
