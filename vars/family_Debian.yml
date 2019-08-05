@@ -1,2 +1,2 @@
 aem_dispatcher_module_path: /usr/lib/apache2/modules
-_aem_dispatcher_apache_server_root: "{{ aem_dispatcher_apache_server_root | default('/etc/apache2') }}"
+_aem_dispatcher_apache_server_root: "{{ aem_dispatcher_apache_server_root | default(apache_server_root) | default('/etc/apache2') }}"
