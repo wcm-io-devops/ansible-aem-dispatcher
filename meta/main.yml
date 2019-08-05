@@ -40,4 +40,3 @@ dependencies:
       "dependency.apache"
     ]
     when: aem_dispatcher_dependency_apache
-
