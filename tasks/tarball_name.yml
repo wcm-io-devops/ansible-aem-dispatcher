@@ -19,9 +19,13 @@
       - "{{ ansible_system | lower }}"
       - "{{ ansible_architecture if aem_dispatcher_version is version('4.3.3', '>=') else ansible_architecture | regex_replace('_', '-') }}"
 
-- name: Add SSL filename token.
+- name: Create SSL token name from used libssl version.
   set_fact:
     aem_dispatcher_ssl_token: "{{ 'ssl' + aem_dispatcher_libssl_version if aem_dispatcher_version is version('4.3.3', '>=') else 'ssl' }}"
+  when: aem_dispatcher_ssl_support
+
+- name: Add SSL token to filename tokens.
+  set_fact:
     aem_dispatcher_tarball_tokens: "{{ aem_dispatcher_tarball_tokens + [aem_dispatcher_ssl_token] }}"
   when: aem_dispatcher_ssl_support
 
