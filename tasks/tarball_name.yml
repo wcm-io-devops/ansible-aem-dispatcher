@@ -14,6 +14,7 @@
   set_fact:
     aem_dispatcher_tarball_tokens:
       - "dispatcher"
+      - "{{ aem_dispatcher_version }}"
       - "apache{{ apache_version | regex_replace('(\\d+\\.\\d+).*', '\\1') }}"
       - "{{ ansible_system | lower }}"
       - "{{ ansible_architecture if aem_dispatcher_version | version('4.3.3', '>=') else ansible_architecture | regex_replace('_', '-') }}"
@@ -25,7 +26,7 @@
 
 - name: Build dispatcher tarball name.
   set_fact:
-    aem_dispatcher_tarball_name: "{{ aem_dispatcher_tarball_tokens | join('-') }}-{{ aem_dispatcher_version }}.tar.gz"
+    aem_dispatcher_tarball_name: "{{ aem_dispatcher_tarball_tokens | join('-') }}.tar.gz"
 
 - name: Print dispatcher tarball name
   debug:
