@@ -1,3 +1,6 @@
+- name: Include distribution specific variables.
+  include_vars: "distribution_{{ ansible_distribution }}.yml"
+
 - name: Enable dispatcher module.
   copy:
     dest: "{{ _aem_dispatcher_apache_server_root }}/conf.modules.d/01-dispatcher.conf"
