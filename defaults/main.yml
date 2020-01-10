@@ -14,6 +14,9 @@ aem_dispatcher_download_path: /tmp
 # aem_dispatcher_tarball_name: "dispatcher-apache2.4-linux-x86-64-ssl-{{ aem_dispatcher_version }}.tar.gz"
 # aem_dispatcher_tarball_sha1: 4DA1FBD72FE7E2F68C755307FBF71CDC4CC10FFF
 
+# Version of libssl package to be used (only relevant for dispatcher version >= 4.3.3)
+aem_dispatcher_libssl_version: 1.1
+
 # Installation source: file, package, url, s3 or maven_repository
 aem_dispatcher_install_source: file
 

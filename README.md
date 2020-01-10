@@ -35,6 +35,11 @@ The https port the webserver is listening on
 
 Path to download the Dispatcher tarball to.
 
+    aem_dispatcher_libssl_version: 1.1
+
+Version of libssl that will be used on the host.
+This is relevant for dispatcher version >= 4.3.3, older versions do not support `libssl1.1`.
+
 	aem_dispatcher_tarball_name:
 	
 Name of the Dispatcher tarball to use for installation. When not specified, the role will automatically build the name from the target environment (Apache version, architecture etc.) and `dispatcher_version`.

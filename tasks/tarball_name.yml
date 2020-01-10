@@ -21,14 +21,10 @@
 
 - name: Add SSL filename token.
   set_fact:
-    aem_dispatcher_tarball_tokens: "{{ aem_dispatcher_tarball_tokens + ['ssl'] }}"
+    aem_dispatcher_ssl_token: "{{ 'ssl' if aem_dispatcher_version | version('4.3.3', '<') else 'ssl' + aem_dispatcher_libssl_version }}"
+    aem_dispatcher_tarball_tokens: "{{ aem_dispatcher_tarball_tokens + [aem_dispatcher_ssl_token] }}"
   when: aem_dispatcher_ssl_support
 
 - name: Build dispatcher tarball name.
   set_fact:
     aem_dispatcher_tarball_name: "{{ aem_dispatcher_tarball_tokens | join('-') }}.tar.gz"
-
-- name: Print dispatcher tarball name
-  debug:
-    msg: "{{ aem_dispatcher_tarball_name }}"
-    verbosity: 1
