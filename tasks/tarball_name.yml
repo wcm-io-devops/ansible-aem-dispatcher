@@ -17,11 +17,16 @@
       - "{{ aem_dispatcher_version }}"
       - "apache{{ apache_version | regex_replace('(\\d+\\.\\d+).*', '\\1') }}"
       - "{{ ansible_system | lower }}"
-      - "{{ ansible_architecture if aem_dispatcher_version is version('4.3.3', '>=') else ansible_architecture | regex_replace('_', '-') }}"
+      - >-
+          "{{ ansible_architecture if aem_dispatcher_version is version('4.3.3', '>=') #
+          else ansible_architecture | regex_replace('_', '-') }}"
 
 - name: Create SSL token name from used libssl version.
   set_fact:
-    aem_dispatcher_ssl_token: "{{ 'ssl' + aem_dispatcher_libssl_version if aem_dispatcher_version is version('4.3.3', '>=') else 'ssl' }}"
+    aem_dispatcher_ssl_token: >-
+      "{{ 'ssl' + aem_dispatcher_libssl_version | regex_replace('(\\d+\\.\\d+).*', '\\1')
+        if aem_dispatcher_version is version('4.3.3', '>=')
+      else 'ssl' }}"
   when: aem_dispatcher_ssl_support
 
 - name: Add SSL token to filename tokens.

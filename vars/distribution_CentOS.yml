@@ -1,1 +1,1 @@
-aem_dispatcher_libssl_version: "{{ '1.1' if aem_dispatcher_version is version('4.3.3', '>=') else '1.0' }}"
+aem_dispatcher_libssl_version: "1.0.2"

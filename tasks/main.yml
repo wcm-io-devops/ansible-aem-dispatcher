@@ -2,6 +2,9 @@
 - name: Include OS family specific variables.
   include_vars: "family_{{ ansible_os_family }}.yml"
 
+- name: Include OS-specific setup.
+  include_tasks: "setup_{{ ansible_os_family }}.yml"
+
 - name: Build Dispatcher tarball filename for environment.
   include_tasks: tarball_name.yml
   when: aem_dispatcher_tarball_name is undefined
@@ -21,6 +24,3 @@
   include_tasks: unpack_module.yml
   # We assume that the package already installed the module in the proper location
   when: aem_dispatcher_install_source != "package"
-
-- name: Include OS-specific setup.
-  include_tasks: "setup_{{ ansible_os_family }}.yml"
