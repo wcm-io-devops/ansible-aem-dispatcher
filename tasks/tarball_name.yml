@@ -30,4 +30,4 @@
 - name: Print dispatcher tarball name
   debug:
     msg: "{{ aem_dispatcher_tarball_name }}"
-  verbosity: 1
+    verbosity: 1
