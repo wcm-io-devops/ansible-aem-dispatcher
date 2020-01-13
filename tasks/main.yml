@@ -1,10 +1,14 @@
 ---
 - name: Include OS family specific variables.
   include_vars: "family_{{ ansible_os_family }}.yml"
+  tags:
+    - skip_ansible_lint
 
 - name: Build Dispatcher tarball filename for environment.
   include_tasks: tarball_name.yml
   when: aem_dispatcher_tarball_name is undefined
+  tags:
+    - skip_ansible_lint
 
 - name: Check whether Dispatcher tarball was already downloaded.
   stat:
