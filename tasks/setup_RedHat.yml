@@ -6,7 +6,7 @@
 
 - name: Install SELinux Python dependencies.
   package:
-    name: "{{ 'libsemanage-python' if ansible_distribution_major_version < 8 else 'libsemanage-python3' }}"
+    name: "{{ 'libsemanage-python' if ansible_distribution_major_version|int < 8 else 'libsemanage-python3' }}"
     state: present
 
 - name: Configure SELinux to allow Apache to create outbound connections.

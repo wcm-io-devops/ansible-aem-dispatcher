@@ -8,7 +8,6 @@
   unarchive:
     src: "{{ aem_dispatcher_download_path }}/{{ aem_dispatcher_tarball_name }}"
     remote_src: yes
-    extra_opts: ["{{ _aem_dispatcher_module_filename }}"]
     dest: "{{ aem_dispatcher_module_path }}"
     mode: 0755
     owner: root
