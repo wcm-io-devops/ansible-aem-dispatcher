@@ -1,14 +1,13 @@
 ---
 - name: Derive module filename from tarball name.
   set_fact:
-    _aem_dispatcher_module_filename:
-      "{{ aem_dispatcher_tarball_name | regex_replace('(dispatcher-apache.*?)-.*-(.*).tar.gz', '\\1-\\2.so') }}"
+    _aem_dispatcher_module_filename: >-
+      {{ aem_dispatcher_tarball_name | regex_replace('(dispatcher)-([\d|\.]*)-(apache[\d|\.]*).*', '\1-\3-\2.so') }}
 
 - name: Unpack Dispatcher module.
   unarchive:
     src: "{{ aem_dispatcher_download_path }}/{{ aem_dispatcher_tarball_name }}"
     remote_src: yes
-    extra_opts: ["{{ _aem_dispatcher_module_filename }}"]
     dest: "{{ aem_dispatcher_module_path }}"
     mode: 0755
     owner: root
