@@ -1,2 +1,5 @@
 aem_dispatcher_module_path: /usr/lib/apache2/modules
 _aem_dispatcher_apache_server_root: "{{ aem_dispatcher_apache_server_root | default(apache_server_root) | default('/etc/apache2') }}"
+
+aem_dispatcher_libssl_version: >-
+  {{ '1.1' if ansible_distribution_major_version is version('10', '>=') else '1.0.2' }}
