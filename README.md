@@ -9,7 +9,7 @@ This role installs the [AEM Dispatcher](https://helpx.adobe.com/experience-manag
 
 ## Requirements
 
-This role requires Ansible 2.4 or higher and works with Dispatcher 4.2.x or higher. It requires the Dispatcher installation tarball which can be supplied as file or retrieved from a Maven/RPM/APT repository, an HTTP URL or a S3 bucket (see below).
+This role requires Ansible 2.7 or higher and works with Dispatcher 4.2.x or higher. It requires the Dispatcher installation tarball which can be supplied as file or retrieved from a Maven/RPM/APT repository, an HTTP URL or a S3 bucket (see below).
 
 ## Role Variables
 
