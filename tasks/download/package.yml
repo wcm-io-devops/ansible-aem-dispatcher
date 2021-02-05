@@ -1,3 +1,4 @@
+---
 - name: Install Dispatcher package.
   package:
     name: "{{ aem_dispatcher_package }}"

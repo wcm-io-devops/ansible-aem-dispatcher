@@ -1,3 +1,4 @@
+---
 - name: Include distribution specific variables.
   include_vars: "distribution_{{ ansible_distribution }}.yml"
 
@@ -11,19 +12,19 @@
 
 - block:
 
-  - name: Install libssl dependency.
-    package:
-      name: "libssl{{ aem_dispatcher_libssl_version }}"
-      state: present
+    - name: Install libssl dependency.
+      package:
+        name: "libssl{{ aem_dispatcher_libssl_version }}"
+        state: present
 
-  - name: Create compatibility links.
-    file:
-      src: "{{ aem_dispatcher_libssl_path }}/{{ item }}.{{ aem_dispatcher_libssl_version }}"
-      dest: "{{ aem_dispatcher_libssl_path }}/{{ item }}.10"
-      state: link
-    with_items:
-      - libssl.so
-      - libcrypto.so
+    - name: Create compatibility links.
+      file:
+        src: "{{ aem_dispatcher_libssl_path }}/{{ item }}.{{ aem_dispatcher_libssl_version }}"
+        dest: "{{ aem_dispatcher_libssl_path }}/{{ item }}.10"
+        state: link
+      with_items:
+        - libssl.so
+        - libcrypto.so
 
   when: aem_dispatcher_ssl_support
 
@@ -31,6 +32,7 @@
   copy:
     dest: "{{ _aem_dispatcher_apache_server_root }}/mods-available/dispatcher.load"
     content: "LoadModule dispatcher_module {{ aem_dispatcher_module_path }}/mod_dispatcher.so"
+    mode: 0644
   notify:
     - restart apache
 

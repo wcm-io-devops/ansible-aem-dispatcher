@@ -3,3 +3,4 @@
   copy:
     src: "{{ aem_dispatcher_tarball_name }}"
     dest: "{{ aem_dispatcher_download_path }}"
+    mode: 0644
