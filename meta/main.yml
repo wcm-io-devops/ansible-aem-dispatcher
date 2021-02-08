@@ -1,3 +1,4 @@
+---
 galaxy_info:
   role_name: aem_dispatcher
   author: Martin Wehner
@@ -8,19 +9,19 @@ galaxy_info:
   min_ansible_version: 2.7
 
   platforms:
-  - name: Ubuntu
-    versions:
-    - trusty
-    - xenial
-    - bionic
-  - name: Debian
-    versions:
-    - stretch
-    - buster
-  - name: EL
-    versions:
-    - 7
-    - 8
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+        - bionic
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+    - name: EL
+      versions:
+        - 7
+        - 8
 
   galaxy_tags:
     - aem
@@ -31,14 +32,13 @@ galaxy_info:
 
 dependencies:
   - role: wcm_io_devops.apache
-    version: "3.1.0-1"
+    version: "3.1.4-1"
     apache_remove_default_vhost: true
     apache_remove_default_vhost_ssl: true
     apache_create_vhosts: false
     apache_listen_port: "{{ aem_dispatcher_port }}"
     apache_listen_port_ssl: "{{ aem_dispatcher_port_ssl }}"
-    tags: [
-      "dependency",
-      "dependency.apache"
-    ]
+    tags:
+      - "dependency"
+      - "dependency.apache"
     when: aem_dispatcher_dependency_apache

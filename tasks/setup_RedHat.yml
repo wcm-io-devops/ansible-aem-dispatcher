@@ -1,7 +1,9 @@
+---
 - name: Enable dispatcher module.
   copy:
     dest: "{{ _aem_dispatcher_apache_server_root }}/conf.modules.d/01-dispatcher.conf"
     content: "LoadModule dispatcher_module modules/mod_dispatcher.so"
+    mode: 0644
   notify: restart apache
 
 - name: Install SELinux Python dependencies.
