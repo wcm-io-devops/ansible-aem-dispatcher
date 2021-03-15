@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   role_name: aem_dispatcher
+  namespace: wcm_io_devops
   author: Martin Wehner
   description: Deploys AEM Dispatcher Apache Module on Linux
   company: pro!vision
