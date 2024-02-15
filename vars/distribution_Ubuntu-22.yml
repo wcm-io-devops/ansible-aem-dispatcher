@@ -1,0 +1,3 @@
+---
+aem_dispatcher_libssl_path: /lib/x86_64-linux-gnu
+aem_dispatcher_libssl_deb_package: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4_amd64.deb
