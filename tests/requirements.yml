@@ -1,2 +1,5 @@
 ---
 - name: wcm_io_devops.apache
+  src: https://github.com/wcm-io-devops/ansible-role-apache.git
+  version: master
+  scm: git

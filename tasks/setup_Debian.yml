@@ -12,10 +12,17 @@
 
 - block:
 
-    - name: Install libssl dependency.
+    - name: Install libssl dependency via package manager.
       package:
         name: "libssl{{ aem_dispatcher_libssl_version }}"
         state: present
+      when: aem_dispatcher_libssl_deb_package is not defined
+
+    - name: Install libssl dependency via deb package.
+      apt:
+        deb: "{{ aem_dispatcher_libssl_deb_package }}"
+        state: present
+      when: aem_dispatcher_libssl_deb_package is defined
 
     - name: Create compatibility links.
       file:
