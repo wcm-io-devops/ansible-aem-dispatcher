@@ -19,7 +19,7 @@
       when: aem_dispatcher_libssl_deb_package is not defined
 
     - name: Install libssl dependency via deb package.
-      ansible.builtin.apt:
+      apt:
         deb: "{{ aem_dispatcher_libssl_deb_package }}"
         state: present
       when: aem_dispatcher_libssl_deb_package is defined
